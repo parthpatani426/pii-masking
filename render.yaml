@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: veil-pii-masking
+    runtime: docker
+    plan: starter
+    healthCheckPath: /api/health
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: PII_HMAC_KEY
+        generateValue: true
+      - key: SUPABASE_BUCKET
+        value: masked-files
+      - key: MAX_UPLOAD_MB
+        value: "25"

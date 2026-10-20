@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veil — Smart PII Masking</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#"><span class="brand-icon">V</span> veil<span class="dot">.</span></a><nav><a href="#how">How it works</a><a href="#security">Security</a><span class="status"><i></i> Local processing</span></nav></header>
+<main>
+<section class="hero">
+  <div class="eyebrow"><span>✳</span> PRIVACY TOOLKIT FOR REAL-WORLD FILES</div>
+  <h1>Your data.<br><span>Protected by design.</span></h1>
+  <p class="hero-copy">Detect and mask sensitive information across documents and spreadsheets. Keep useful structure, reduce exposure, and download a safer copy.</p>
+  <div class="trust-row"><span>✓ Files processed on your server</span><span>✓ Original uploads deleted after processing</span><span>✓ You control what gets masked</span></div>
+</section>
+<section class="workspace">
+  <div class="section-heading"><div><p class="eyebrow">WORKSPACE</p><h2>Mask a file</h2></div><span class="pill">No account required</span></div>
+  <form id="mask-form">
+    <label class="dropzone" id="dropzone" for="file-input">
+      <input id="file-input" name="file" type="file" accept=".csv,.xlsx,.xls,.pdf,.docx,.txt,.md,.json" required>
+      <span class="upload-icon">↑</span><strong id="file-label">Drop your file here, or <u>browse</u></strong>
+      <span class="muted">CSV, XLSX, PDF, DOCX, TXT, MD, JSON · Up to {{ 25 }} MB</span>
+      <span class="file-chip" id="file-chip" hidden></span>
+    </label>
+    <div class="settings">
+      <div class="setting-title"><h3>Detection rules</h3><span class="muted">Choose what to find</span></div>
+      <div class="checks">
+        <label><input type="checkbox" name="types" value="EMAIL" checked><span>Email addresses</span></label>
+        <label><input type="checkbox" name="types" value="PHONE" checked><span>Phone numbers</span></label>
+        <label><input type="checkbox" name="types" value="AADHAAR" checked><span>Aadhaar numbers</span></label>
+        <label><input type="checkbox" name="types" value="PAN" checked><span>PAN numbers</span></label>
+        <label><input type="checkbox" name="types" value="CREDIT_CARD" checked><span>Credit cards</span></label>
+        <label><input type="checkbox" name="types" value="SSN" checked><span>US SSNs</span></label>
+        <label><input type="checkbox" name="types" value="IP_ADDRESS" checked><span>IP addresses</span></label>
+        <label><input type="checkbox" name="types" value="DATE_OF_BIRTH" checked><span>Dates of birth (labeled)</span></label>
+      </div>
+      <div class="setting-title mode-title"><h3>Masking style</h3></div>
+      <div class="mode-options">
+        <label class="mode-card"><input type="radio" name="mode" value="placeholder" checked><span><b>Replace with label</b><small>Example: [EMAIL_MASKED]</small></span></label>
+        <label class="mode-card"><input type="radio" name="mode" value="partial"><span><b>Partial masking</b><small>Keep the last 4 characters</small></span></label>
+      </div>
+    </div>
+    <button class="primary" id="submit-btn" type="submit"><span>✦</span> Detect &amp; mask file <span class="arrow">→</span></button>
+    <p class="microcopy">Your original file is deleted from the temporary upload folder after processing.</p>
+  </form>
+  <div id="result" class="result" hidden aria-live="polite"></div>
+</section>
+<section class="steps" id="how"><p class="eyebrow">SIMPLE BY DESIGN</p><h2>From raw to safer in three steps.</h2><div class="step-grid"><article><span>01</span><h3>Upload</h3><p>Choose a supported file. The app reads text from the file format.</p></article><article><span>02</span><h3>Detect &amp; mask</h3><p>Pick detection rules and a masking style. Review the result count.</p></article><article><span>03</span><h3>Download</h3><p>Download the masked copy. Save masked output and job metadata to Supabase when configured.</p></article></div></section>
+<section class="security" id="security"><div class="shield">◇</div><div><h2>Privacy is a workflow, not a promise.</h2><p>Original uploads are not sent to Supabase. Only the masked output and job metadata are saved when server credentials are configured. Do not upload highly sensitive files to a public demo deployment.</p></div></section>
+</main>
+<footer><a class="brand" href="#"><span class="brand-icon">V</span> veil<span class="dot">.</span></a><span>Smart PII masking · Review before you share</span></footer>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body></html>
